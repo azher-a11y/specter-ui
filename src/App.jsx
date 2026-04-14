@@ -1,0 +1,403 @@
+import React, { useState } from 'react';
+import {
+  Search, List as ListIcon, Database, Users, LineChart, PieChart,
+  Layers, Settings, ChevronLeft, ChevronRight, Sparkles, Eye, Plus,
+  UploadCloud, ExternalLink, Linkedin, Twitter, Globe, StickyNote,
+  Network, Flag, Activity, Briefcase, Users2, Landmark, Building2,
+  LifeBuoy
+} from 'lucide-react';
+
+const Badge = ({ children, className = "" }) => (
+  <span className={`inline-flex items-center px-2.5 py-0.5 rounded-md text-xs font-medium border border-gray-200 bg-gray-50 text-gray-700 ${className}`}>
+    {children}
+  </span>
+);
+
+const Tag = ({ children, className = "" }) => (
+  <span className={`inline-flex items-center px-2.5 py-1 rounded-md text-xs font-medium bg-gray-100 text-gray-700 ${className}`}>
+    {children}
+  </span>
+);
+
+const Button = ({ children, variant = "secondary", className = "", icon: Icon }) => {
+  const baseStyle = "inline-flex items-center justify-center px-3 py-1.5 text-sm font-medium rounded-md transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-900";
+  const variants = {
+    primary: "text-white bg-gray-900 hover:bg-gray-800",
+    secondary: "text-gray-700 bg-white border border-gray-300 hover:bg-gray-50",
+    ghost: "text-gray-600 hover:bg-gray-100 hover:text-gray-900"
+  };
+
+  return (
+    <button className={`${baseStyle} ${variants[variant]} ${className}`}>
+      {Icon && <Icon className="w-4 h-4 mr-2" />}
+      {children}
+    </button>
+  );
+};
+
+const SidebarItem = ({ icon: Icon, label, active, count }) => (
+  <a href="#" className={`flex items-center justify-between px-3 py-2 rounded-md text-sm transition-colors ${active ? 'bg-gray-100 text-gray-900 font-medium' : 'text-gray-600 hover:bg-gray-50 hover:text-gray-900'}`}>
+    <div className="flex items-center">
+      <Icon className={`w-4 h-4 mr-3 ${active ? 'text-gray-900' : 'text-gray-400'}`} />
+      {label}
+    </div>
+    {count && <span className="text-xs text-gray-400">{count}</span>}
+  </a>
+);
+
+const SidebarSection = ({ title, children }) => (
+  <div className="mb-6">
+    <h3 className="px-3 text-xs font-semibold text-gray-400 uppercase tracking-wider mb-2">{title}</h3>
+    <div className="space-y-0.5">
+      {children}
+    </div>
+  </div>
+);
+
+const App = () => {
+  const [activeTab, setActiveTab] = useState('Sector');
+
+  const tabs = [
+    'Overview', 'Sector', 'Financials', 'Team', 'Traction Metrics',
+    'Reviews', 'News', 'Similar', 'Revenue Signals'
+  ];
+
+  return (
+    <div className="flex h-screen bg-white text-gray-900 font-sans overflow-hidden">
+      {/* Left Sidebar */}
+      <aside className="w-64 border-r border-gray-200 bg-[#fbfbfb] flex flex-col flex-shrink-0 hidden md:flex">
+        <div className="h-14 flex items-center px-4 border-b border-gray-200">
+          <div className="font-bold text-xl tracking-tight text-gray-900">specter</div>
+        </div>
+
+        <div className="p-3">
+          <div className="relative group">
+            <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+              <Search className="h-4 w-4 text-gray-400" />
+            </div>
+            <input
+              type="text"
+              placeholder="Quick search"
+              className="block w-full pl-9 pr-3 py-1.5 border border-gray-200 rounded-md leading-5 bg-white placeholder-gray-400 focus:outline-none focus:ring-1 focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
+            />
+            <div className="absolute inset-y-0 right-0 pr-2 flex items-center pointer-events-none">
+              <span className="text-gray-400 text-xs border border-gray-200 rounded px-1.5 py-0.5 bg-gray-50">⌘K</span>
+            </div>
+          </div>
+        </div>
+
+        <div className="flex-1 overflow-y-auto px-2 py-2 pb-4 scrollbar-hide">
+          <SidebarSection title="My Workspace">
+            <SidebarItem icon={Search} label="Searches" />
+            <SidebarItem icon={ListIcon} label="Lists" />
+            <SidebarItem icon={Briefcase} label="My CRM" />
+            <SidebarItem icon={Network} label="My Network" />
+          </SidebarSection>
+
+          <SidebarSection title="Company">
+            <SidebarItem icon={Database} label="Company DB" active />
+          </SidebarSection>
+
+          <SidebarSection title="People">
+            <SidebarItem icon={Users2} label="People DB" />
+            <SidebarItem icon={Activity} label="Talent Signals" />
+          </SidebarSection>
+
+          <SidebarSection title="Investors">
+            <SidebarItem icon={Landmark} label="Investor DB" />
+            <SidebarItem icon={LineChart} label="Interest Signals" />
+          </SidebarSection>
+
+          <SidebarSection title="Transactions">
+            <SidebarItem icon={PieChart} label="Funding Rounds" />
+            <SidebarItem icon={Building2} label="Acquisitions" />
+          </SidebarSection>
+
+          <SidebarSection title="Market">
+            <SidebarItem icon={Layers} label="Landscapes" />
+          </SidebarSection>
+        </div>
+
+        <div className="p-3 border-t border-gray-200 space-y-1">
+          <SidebarItem icon={LifeBuoy} label="Support" />
+          <a href="#" className="flex items-center px-3 py-2 mt-2 rounded-md text-sm text-gray-700 hover:bg-gray-100">
+            <div className="w-6 h-6 rounded-full bg-blue-600 text-white flex items-center justify-center text-xs font-bold mr-3">
+              AH
+            </div>
+            Azher Hussain
+          </a>
+        </div>
+      </aside>
+
+      {/* Main Content Area */}
+      <main className="flex-1 flex flex-col min-w-0 overflow-hidden bg-white">
+        <div className="h-12 border-b border-gray-100 flex items-center px-6 justify-between text-sm text-gray-500 bg-white">
+          <div className="flex items-center space-x-4">
+            <div className="flex items-center space-x-2">
+              <button className="hover:bg-gray-100 p-1 rounded text-gray-400"><ChevronLeft size={16} /></button>
+              <span className="font-medium text-gray-700">1 of 6M</span>
+              <button className="hover:bg-gray-100 p-1 rounded text-gray-400"><ChevronRight size={16} /></button>
+            </div>
+          </div>
+        </div>
+
+        <div className="flex-1 overflow-y-auto bg-gray-50">
+          <div className="bg-white">
+            <div className="max-w-6xl mx-auto w-full">
+              <div className="px-8 pt-8 pb-6">
+                <div className="flex flex-col md:flex-row md:items-start justify-between gap-6">
+                  <div className="flex gap-5">
+                    <div className="w-20 h-20 rounded-xl bg-[#F4D03F] flex items-center justify-center flex-shrink-0 shadow-sm border border-gray-100">
+                      <span className="text-4xl font-bold text-white">R</span>
+                    </div>
+
+                    <div>
+                      <div className="flex items-center gap-3 mb-1">
+                        <h1 className="text-2xl font-bold text-gray-900 tracking-tight">Rippling</h1>
+                        <Badge className="bg-white text-gray-700 border-gray-200 font-normal">April Rank: 778</Badge>
+                      </div>
+
+                      <p className="text-gray-600 text-sm max-w-2xl mb-3">
+                        Rippling is a workforce management system that unifies HR, IT, and finance operations in one platform.
+                      </p>
+
+                      <div className="flex flex-wrap items-center gap-2 text-xs text-gray-500 mb-4">
+                        <Tag className="bg-white border border-gray-200 text-gray-600 font-normal py-0.5 px-2"><Globe size={12} className="mr-1 text-gray-400" /> San Francisco, US</Tag>
+                        <Tag className="bg-white border border-gray-200 text-gray-600 font-normal py-0.5 px-2">Founded 2010</Tag>
+                        <Tag className="bg-white border border-gray-200 text-gray-600 font-normal py-0.5 px-2">B2B</Tag>
+                        <Tag className="bg-white border border-gray-200 text-gray-600 font-normal py-0.5 px-2">Late Stage</Tag>
+                        <Tag className="bg-white border border-gray-200 text-gray-900 font-medium py-0.5 px-2">Total Funding: $2.4B</Tag>
+                      </div>
+
+                      <div className="flex items-center gap-3">
+                        <div className="flex gap-2">
+                          <a href="#" className="p-1.5 text-gray-400 hover:text-gray-600 bg-white rounded border border-gray-200"><Globe size={14} /></a>
+                          <a href="#" className="p-1.5 text-gray-400 hover:text-blue-600 bg-white rounded border border-gray-200"><Linkedin size={14} /></a>
+                          <a href="#" className="p-1.5 text-gray-400 hover:text-gray-900 bg-white rounded border border-gray-200"><Twitter size={14} /></a>
+                        </div>
+                        <span className="text-xs text-gray-400">No connections</span>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="flex flex-wrap gap-2">
+                    <Button icon={Eye}>Viewed</Button>
+                    <Button icon={Plus}>Add to List</Button>
+                    <Button icon={UploadCloud}>Push to Pipedrive</Button>
+                  </div>
+                </div>
+              </div>
+
+              <div className="px-8 border-b border-gray-200">
+                <nav className="flex space-x-6 overflow-x-auto scrollbar-hide">
+                  {tabs.map((tab) => (
+                    <button
+                      key={tab}
+                      onClick={() => setActiveTab(tab)}
+                      className={`pb-3 text-sm font-medium whitespace-nowrap transition-colors relative ${
+                        activeTab === tab
+                          ? 'text-gray-900'
+                          : 'text-gray-500 hover:text-gray-700'
+                      }`}
+                    >
+                      {tab}
+                      {activeTab === tab && (
+                        <span className="absolute bottom-0 left-0 w-full h-0.5 bg-gray-900 rounded-t-full"></span>
+                      )}
+                    </button>
+                  ))}
+                </nav>
+              </div>
+            </div>
+          </div>
+
+          <div className="max-w-6xl mx-auto w-full">
+            <div className="p-8 max-w-5xl">
+              <div className="bg-white border border-gray-200 rounded-lg shadow-sm p-6">
+                <div>
+                  <h3 className="text-sm font-semibold text-gray-900 mb-5">Business Overview</h3>
+                  <p className="text-sm text-gray-700 leading-relaxed mb-8">
+                    Rippling is a comprehensive workforce management platform that unifies HR, IT, and finance operations, built on a single source of truth for employee data. It offers a suite of integrated applications including HCM, Payroll, IT, and Spend management, designed to automate routine tasks and improve business execution. With over 500 app integrations, Rippling aims to provide businesses with a unified system to manage their entire workforce and operations efficiently. The company emphasizes its commitment to R&D and building a robust platform to address the fragmented nature of business operations. Rippling serves a wide range of industries and company sizes, from startups to enterprises, and supports global hiring and payroll across 185+ countries.
+                  </p>
+
+                  <div className="space-y-5 mt-8">
+                    <div>
+                      <h4 className="text-xs font-medium text-gray-500 mb-2">Website</h4>
+                      <a href="https://rippling.com" className="text-sm text-blue-600 hover:underline flex items-center w-max">
+                        rippling.com <ExternalLink size={12} className="ml-1" />
+                      </a>
+                    </div>
+
+                    <div>
+                      <h4 className="text-xs font-medium text-gray-500 mb-2">Status</h4>
+                      <Badge className="bg-green-50 text-green-700 border-green-200">Active</Badge>
+                    </div>
+
+                    <div>
+                      <h4 className="text-xs font-medium text-gray-500 mb-2">Growth Stage</h4>
+                      <Tag>Late Stage</Tag>
+                    </div>
+
+                    <div>
+                      <h4 className="text-xs font-medium text-gray-500 mb-2">Founded</h4>
+                      <span className="text-sm text-gray-800">2016</span>
+                    </div>
+
+                    <div>
+                      <h4 className="text-xs font-medium text-gray-500 mb-2">HQ</h4>
+                      <span className="text-sm text-gray-800 flex items-center w-max">
+                        <Globe size={14} className="mr-1.5 text-gray-400" /> San Francisco, US
+                      </span>
+                    </div>
+
+                    <div>
+                      <h4 className="text-xs font-medium text-gray-500 mb-2">Business Model</h4>
+                      <Tag>SaaS</Tag>
+                    </div>
+
+                    <div>
+                      <h4 className="text-xs font-medium text-gray-500 mb-2">Industry</h4>
+                      <div className="flex gap-2">
+                        <Tag>Technology, Information and Internet</Tag>
+                        <Tag>Software Development</Tag>
+                      </div>
+                    </div>
+
+                    <div>
+                      <h4 className="text-xs font-medium text-gray-500 mb-2">Tech Vertical</h4>
+                      <div className="flex flex-wrap gap-2">
+                        <Tag className="gap-1.5">
+                          Future of Work <ChevronRight size={12} className="text-gray-400" /> Workforce Management, Scheduling and Time
+                        </Tag>
+                        <Tag className="gap-1.5">
+                          Future of Work <ChevronRight size={12} className="text-gray-400" /> HRIS and Core People System
+                        </Tag>
+                        <Tag className="cursor-pointer hover:bg-gray-200 transition-colors">
+                          <Plus size={12} className="mr-1" />
+                          5
+                        </Tag>
+                      </div>
+                    </div>
+
+                    <div>
+                      <h4 className="text-xs font-medium text-gray-500 mb-2">Tags</h4>
+                      <div className="flex flex-wrap gap-2">
+                        {['Workforce Management', 'HR', 'IT', 'Finance', 'Payroll', 'Global Payroll', 'Spend Management', 'Onboarding'].map(tag => (
+                          <Badge key={tag} className="bg-gray-50 font-normal">{tag}</Badge>
+                        ))}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <hr className="border-gray-200 my-8" />
+
+                <div>
+                  <h3 className="text-sm font-semibold text-gray-900 mb-5">Customer Landscape</h3>
+                  <div className="space-y-5">
+                    <div>
+                      <h4 className="text-xs font-medium text-gray-500 mb-2">Customer Profile</h4>
+                      <p className="text-sm text-gray-800">Companies managing HR, IT, and finance</p>
+                    </div>
+                    <div>
+                      <h4 className="text-xs font-medium text-gray-500 mb-2">Customer Focus</h4>
+                      <Badge>B2B</Badge>
+                    </div>
+                    <div>
+                      <h4 className="text-xs font-medium text-gray-500 mb-2">Reported Clients</h4>
+                      <div className="flex flex-wrap gap-2 mb-4">
+                        {['Andros', 'Y Combinator', 'Chess.com', 'Forterra', 'Highnoon', 'Clay', "Barry's"].map(client => (
+                          <Tag key={client} className="bg-white border border-gray-200">{client}</Tag>
+                        ))}
+                      </div>
+                      <Button variant="ghost" className="text-xs pl-0 text-blue-600 hover:text-blue-700 hover:bg-transparent font-medium">Explore similar companies →</Button>
+                    </div>
+                  </div>
+                </div>
+
+                <hr className="border-gray-200 my-8" />
+
+                <div>
+                  <h3 className="text-sm font-semibold text-gray-900 mb-5">Product and Services</h3>
+                  <div className="space-y-6">
+                    <div>
+                      <h4 className="text-xs font-medium text-gray-500 mb-2">Reported Traction</h4>
+                      <p className="text-sm text-gray-800">
+                        500+ App Integrations, 30K Employee Devices Managed, $35B Payroll Processed, 3x YOY Revenue Growth, 3,920 Global Employees
+                      </p>
+                    </div>
+
+                    <div>
+                      <h4 className="text-xs font-medium text-gray-500 mb-2">Technologies</h4>
+                      <div className="flex flex-wrap gap-1.5">
+                        {[
+                          'Phone/Mobile Compatible', 'Google Tag Manager', 'HSTS',
+                          'Apple Mobile Web Clips Icon', 'Content Delivery Network',
+                          'LetsEncrypt', 'Cloudflare', 'DNSSEC', 'Organization Schema'
+                        ].map(tech => (
+                          <span key={tech} className="text-xs text-gray-600 bg-gray-50 px-2 py-1 rounded border border-gray-100">{tech}</span>
+                        ))}
+                      </div>
+                    </div>
+
+                    <div className="mt-4 border border-gray-200 rounded-lg overflow-hidden">
+                      <table className="min-w-full divide-y divide-gray-200 text-sm">
+                        <thead className="bg-gray-50">
+                          <tr>
+                            <th scope="col" className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider w-1/3">Product</th>
+                            <th scope="col" className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Description</th>
+                          </tr>
+                        </thead>
+                        <tbody className="bg-white divide-y divide-gray-200">
+                          {[
+                            { name: 'Rippling HCM', desc: 'Drive business outcomes with the #1 rated HR solution.' },
+                            { name: 'Rippling Payroll', desc: 'Pay employees and contractors your way.' },
+                            { name: 'Rippling IT', desc: 'Strengthen security and eliminate busy work.' },
+                            { name: 'Rippling Spend', desc: 'Get granular control over company spend.' },
+                            { name: 'Global HRIS', desc: 'Run global HR in one place.' }
+                          ].map((product, idx) => (
+                            <tr key={idx} className="hover:bg-gray-50">
+                              <td className="px-4 py-3 font-medium text-gray-900">{product.name}</td>
+                              <td className="px-4 py-3 text-gray-600">{product.desc}</td>
+                            </tr>
+                          ))}
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div className="h-12"></div>
+            </div>
+          </div>
+        </div>
+      </main>
+
+      {/* Right Action Sidebar */}
+      <aside className="w-14 border-l border-gray-200 bg-white flex flex-col items-center py-4 flex-shrink-0 hidden lg:flex">
+        <div className="space-y-4 w-full flex flex-col items-center">
+          <button className="p-2 text-gray-400 hover:text-gray-900 hover:bg-gray-100 rounded-lg group relative">
+            <StickyNote size={18} />
+            <span className="absolute right-full mr-2 top-1/2 -translate-y-1/2 bg-gray-900 text-white text-xs px-2 py-1 rounded opacity-0 group-hover:opacity-100 pointer-events-none whitespace-nowrap">Notes</span>
+          </button>
+          <button className="p-2 text-gray-400 hover:text-gray-900 hover:bg-gray-100 rounded-lg group relative">
+            <Network size={18} />
+            <span className="absolute right-full mr-2 top-1/2 -translate-y-1/2 bg-gray-900 text-white text-xs px-2 py-1 rounded opacity-0 group-hover:opacity-100 pointer-events-none whitespace-nowrap">Network</span>
+          </button>
+          <button className="p-2 text-gray-400 hover:text-gray-900 hover:bg-gray-100 rounded-lg group relative">
+            <Flag size={18} />
+            <span className="absolute right-full mr-2 top-1/2 -translate-y-1/2 bg-gray-900 text-white text-xs px-2 py-1 rounded opacity-0 group-hover:opacity-100 pointer-events-none whitespace-nowrap">Report</span>
+          </button>
+          <div className="w-8 border-t border-gray-200 my-2"></div>
+          <button className="p-2 text-gray-400 hover:text-gray-900 hover:bg-gray-100 rounded-lg group relative">
+            <Activity size={18} />
+            <span className="absolute right-full mr-2 top-1/2 -translate-y-1/2 bg-gray-900 text-white text-xs px-2 py-1 rounded opacity-0 group-hover:opacity-100 pointer-events-none whitespace-nowrap">Activity</span>
+          </button>
+        </div>
+      </aside>
+    </div>
+  );
+};
+
+export default App;
