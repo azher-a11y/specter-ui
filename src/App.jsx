@@ -274,78 +274,81 @@ const App = () => {
                     Rippling is a comprehensive workforce management platform that unifies HR, IT, and finance operations, built on a single source of truth for employee data. It offers a suite of integrated applications including HCM, Payroll, IT, and Spend management, designed to automate routine tasks and improve business execution. With over 500 app integrations, Rippling aims to provide businesses with a unified system to manage their entire workforce and operations efficiently. The company emphasizes its commitment to R&D and building a robust platform to address the fragmented nature of business operations. Rippling serves a wide range of industries and company sizes, from startups to enterprises, and supports global hiring and payroll across 185+ countries.
                   </p>
 
-                  <div className="space-y-5 mt-8">
-                    <div>
-                      <h4 className="text-xs font-medium text-gray-500 mb-2">Website</h4>
-                      <a href="https://rippling.com" className="text-sm text-blue-600 hover:underline flex items-center w-max">
-                        rippling.com <ExternalLink size={12} className="ml-1" />
-                      </a>
-                    </div>
-
-                    <div>
-                      <h4 className="text-xs font-medium text-gray-500 mb-2">Status</h4>
-                      <Badge className="bg-green-50 text-green-700 border-green-200">Active</Badge>
-                    </div>
-
-                    <div>
-                      <h4 className="text-xs font-medium text-gray-500 mb-2">Growth Stage</h4>
-                      <Tag>Late Stage</Tag>
-                    </div>
-
-                    <div>
-                      <h4 className="text-xs font-medium text-gray-500 mb-2">Founded</h4>
-                      <span className="text-sm text-gray-800">2016</span>
-                    </div>
-
-                    <div>
-                      <h4 className="text-xs font-medium text-gray-500 mb-2">HQ</h4>
-                      <span className="text-sm text-gray-800 flex items-center w-max">
-                        <Globe size={14} className="mr-1.5 text-gray-400" /> San Francisco, US
-                      </span>
-                    </div>
-
-                    <div>
-                      <h4 className="text-xs font-medium text-gray-500 mb-2">Employee Count</h4>
-                      <span className="text-sm text-gray-800">1,449</span>
-                    </div>
-
-                    <div>
-                      <h4 className="text-xs font-medium text-gray-500 mb-2">Business Model</h4>
-                      <Tag>SaaS</Tag>
-                    </div>
-
-                    <div>
-                      <h4 className="text-xs font-medium text-gray-500 mb-2">Industry</h4>
-                      <div className="flex gap-2">
-                        <Tag>Technology, Information and Internet</Tag>
-                        <Tag>Software Development</Tag>
-                      </div>
-                    </div>
-
-                    <div>
-                      <h4 className="text-xs font-medium text-gray-500 mb-2">Tech Vertical</h4>
-                      <div className="flex flex-wrap gap-2">
-                        <Tag className="gap-1.5">
-                          Future of Work <ChevronRight size={12} className="text-gray-400" /> Workforce Management, Scheduling and Time
-                        </Tag>
-                        <Tag className="gap-1.5">
-                          Future of Work <ChevronRight size={12} className="text-gray-400" /> HRIS and Core People System
-                        </Tag>
-                        <Tag className="cursor-pointer hover:bg-gray-200 transition-colors">
-                          <Plus size={12} className="mr-1" />
-                          5
-                        </Tag>
-                      </div>
-                    </div>
-
-                    <div>
-                      <h4 className="text-xs font-medium text-gray-500 mb-2">Tags</h4>
-                      <div className="flex flex-wrap gap-2">
-                        {['Workforce Management', 'HR', 'IT', 'Finance', 'Payroll', 'Global Payroll', 'Spend Management', 'Onboarding'].map(tag => (
-                          <Badge key={tag} className="bg-gray-50 font-normal">{tag}</Badge>
-                        ))}
-                      </div>
-                    </div>
+                  <div className="mt-8 border-l-2 border-gray-100 pl-6">
+                    <table className="w-full">
+                      <tbody className="divide-y divide-gray-100">
+                        <tr>
+                          <td className="py-4 pr-8 text-sm text-gray-500 font-medium align-top w-40 whitespace-nowrap">Website</td>
+                          <td className="py-4">
+                            <Tag className="bg-white border border-gray-200 text-gray-700 gap-1">
+                              rippling.com
+                              <span className="text-blue-500">✓</span>
+                            </Tag>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td className="py-4 pr-8 text-sm text-gray-500 font-medium align-top w-40 whitespace-nowrap">Linkedin</td>
+                          <td className="py-4">
+                            <Tag className="bg-white border border-gray-200 text-gray-700 font-bold px-2.5">in</Tag>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td className="py-4 pr-8 text-sm text-gray-500 font-medium align-top w-40 whitespace-nowrap">Status</td>
+                          <td className="py-4">
+                            <Badge className="bg-green-50 text-green-700 border-green-200">
+                              <span className="w-2 h-2 rounded-full bg-green-500 mr-1.5 inline-block"></span>
+                              Active
+                            </Badge>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td className="py-4 pr-8 text-sm text-gray-500 font-medium align-top w-40 whitespace-nowrap">Growth Stage</td>
+                          <td className="py-4"><Tag>Late Stage</Tag></td>
+                        </tr>
+                        <tr>
+                          <td className="py-4 pr-8 text-sm text-gray-500 font-medium align-top w-40 whitespace-nowrap">Founded</td>
+                          <td className="py-4"><Tag>2016</Tag></td>
+                        </tr>
+                        <tr>
+                          <td className="py-4 pr-8 text-sm text-gray-500 font-medium align-top w-40 whitespace-nowrap">HQ</td>
+                          <td className="py-4"><Tag>San Francisco, US</Tag></td>
+                        </tr>
+                        <tr>
+                          <td className="py-4 pr-8 text-sm text-gray-500 font-medium align-top w-40 whitespace-nowrap">Employee Count</td>
+                          <td className="py-4"><span className="text-sm text-gray-800">1,449</span></td>
+                        </tr>
+                        <tr>
+                          <td className="py-4 pr-8 text-sm text-gray-500 font-medium align-top w-40 whitespace-nowrap">Business Model</td>
+                          <td className="py-4"><Tag>SaaS</Tag></td>
+                        </tr>
+                        <tr>
+                          <td className="py-4 pr-8 text-sm text-gray-500 font-medium align-top w-40 whitespace-nowrap">Industry</td>
+                          <td className="py-4">
+                            <Tag>Technology, Information and Internet › Software Development</Tag>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td className="py-4 pr-8 text-sm text-gray-500 font-medium align-top w-40 whitespace-nowrap">Tech Vertical</td>
+                          <td className="py-4">
+                            <div className="flex flex-wrap gap-2">
+                              <Tag>Future of Work › Workforce Management, Scheduling and Time</Tag>
+                              <Tag>Future of Work › HRIS and Core People Systems</Tag>
+                              <Tag className="cursor-pointer hover:bg-gray-200 transition-colors">+5</Tag>
+                            </div>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td className="py-4 pr-8 text-sm text-gray-500 font-medium align-top w-40 whitespace-nowrap">Tags</td>
+                          <td className="py-4">
+                            <div className="flex flex-wrap gap-2">
+                              {['Workforce Management', 'HR', 'IT', 'Finance', 'Payroll', 'Global Payroll', 'Spend Management', 'Onboarding'].map(tag => (
+                                <Badge key={tag} className="bg-gray-50 font-normal">{tag}</Badge>
+                              ))}
+                            </div>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
                   </div>
                 </div>
 
