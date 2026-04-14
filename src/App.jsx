@@ -274,81 +274,49 @@ const App = () => {
                     Rippling is a comprehensive workforce management platform that unifies HR, IT, and finance operations, built on a single source of truth for employee data. It offers a suite of integrated applications including HCM, Payroll, IT, and Spend management, designed to automate routine tasks and improve business execution. With over 500 app integrations, Rippling aims to provide businesses with a unified system to manage their entire workforce and operations efficiently. The company emphasizes its commitment to R&D and building a robust platform to address the fragmented nature of business operations. Rippling serves a wide range of industries and company sizes, from startups to enterprises, and supports global hiring and payroll across 185+ countries.
                   </p>
 
-                  <div className="mt-8 border-l-2 border-gray-100 pl-6">
-                    <table className="w-full">
-                      <tbody className="divide-y divide-gray-100">
-                        <tr>
-                          <td className="py-4 pr-8 text-sm text-gray-500 font-medium align-top w-40 whitespace-nowrap">Website</td>
-                          <td className="py-4">
-                            <Tag className="bg-white border border-gray-200 text-gray-700 gap-1">
-                              rippling.com
-                              <span className="text-blue-500">✓</span>
-                            </Tag>
-                          </td>
-                        </tr>
-                        <tr>
-                          <td className="py-4 pr-8 text-sm text-gray-500 font-medium align-top w-40 whitespace-nowrap">Linkedin</td>
-                          <td className="py-4">
-                            <Tag className="bg-white border border-gray-200 text-gray-700 font-bold px-2.5">in</Tag>
-                          </td>
-                        </tr>
-                        <tr>
-                          <td className="py-4 pr-8 text-sm text-gray-500 font-medium align-top w-40 whitespace-nowrap">Status</td>
-                          <td className="py-4">
-                            <Badge className="bg-green-50 text-green-700 border-green-200">
-                              <span className="w-2 h-2 rounded-full bg-green-500 mr-1.5 inline-block"></span>
-                              Active
-                            </Badge>
-                          </td>
-                        </tr>
-                        <tr>
-                          <td className="py-4 pr-8 text-sm text-gray-500 font-medium align-top w-40 whitespace-nowrap">Growth Stage</td>
-                          <td className="py-4"><Tag>Late Stage</Tag></td>
-                        </tr>
-                        <tr>
-                          <td className="py-4 pr-8 text-sm text-gray-500 font-medium align-top w-40 whitespace-nowrap">Founded</td>
-                          <td className="py-4"><Tag>2016</Tag></td>
-                        </tr>
-                        <tr>
-                          <td className="py-4 pr-8 text-sm text-gray-500 font-medium align-top w-40 whitespace-nowrap">HQ</td>
-                          <td className="py-4"><Tag>San Francisco, US</Tag></td>
-                        </tr>
-                        <tr>
-                          <td className="py-4 pr-8 text-sm text-gray-500 font-medium align-top w-40 whitespace-nowrap">Employee Count</td>
-                          <td className="py-4"><span className="text-sm text-gray-800">1,449</span></td>
-                        </tr>
-                        <tr>
-                          <td className="py-4 pr-8 text-sm text-gray-500 font-medium align-top w-40 whitespace-nowrap">Business Model</td>
-                          <td className="py-4"><Tag>SaaS</Tag></td>
-                        </tr>
-                        <tr>
-                          <td className="py-4 pr-8 text-sm text-gray-500 font-medium align-top w-40 whitespace-nowrap">Industry</td>
-                          <td className="py-4">
-                            <Tag>Technology, Information and Internet › Software Development</Tag>
-                          </td>
-                        </tr>
-                        <tr>
-                          <td className="py-4 pr-8 text-sm text-gray-500 font-medium align-top w-40 whitespace-nowrap">Tech Vertical</td>
-                          <td className="py-4">
-                            <div className="flex flex-wrap gap-2">
-                              <Tag>Future of Work › Workforce Management, Scheduling and Time</Tag>
-                              <Tag>Future of Work › HRIS and Core People Systems</Tag>
-                              <Tag className="cursor-pointer hover:bg-gray-200 transition-colors">+5</Tag>
-                            </div>
-                          </td>
-                        </tr>
-                        <tr>
-                          <td className="py-4 pr-8 text-sm text-gray-500 font-medium align-top w-40 whitespace-nowrap">Tags</td>
-                          <td className="py-4">
-                            <div className="flex flex-wrap gap-2">
-                              {['Workforce Management', 'HR', 'IT', 'Finance', 'Payroll', 'Global Payroll', 'Spend Management', 'Onboarding'].map(tag => (
-                                <Badge key={tag} className="bg-gray-50 font-normal">{tag}</Badge>
-                              ))}
-                            </div>
-                          </td>
-                        </tr>
-                      </tbody>
-                    </table>
+                  <div className="mt-8 border-l-2 border-gray-100">
+                    {[
+                      { label: 'Website', content: (
+                        <Tag className="bg-white border border-gray-200 text-gray-700 gap-1">
+                          rippling.com
+                          <span className="text-blue-500">✓</span>
+                        </Tag>
+                      )},
+                      { label: 'Linkedin', content: (
+                        <Tag className="bg-white border border-gray-200 text-gray-700 font-bold px-2.5">in</Tag>
+                      )},
+                      { label: 'Status', content: (
+                        <Badge className="bg-green-50 text-green-700 border-green-200">
+                          <span className="w-2 h-2 rounded-full bg-green-500 mr-1.5 inline-block"></span>
+                          Active
+                        </Badge>
+                      )},
+                      { label: 'Growth Stage', content: <Tag>Late Stage</Tag> },
+                      { label: 'Founded', content: <Tag>2016</Tag> },
+                      { label: 'HQ', content: <Tag>San Francisco, US</Tag> },
+                      { label: 'Employee Count', content: <span className="text-sm text-gray-800">1,449</span> },
+                      { label: 'Business Model', content: <Tag>SaaS</Tag> },
+                      { label: 'Industry', content: <Tag>Technology, Information and Internet › Software Development</Tag> },
+                      { label: 'Tech Vertical', content: (
+                        <div className="flex flex-wrap gap-2">
+                          <Tag>Future of Work › Workforce Management, Scheduling and Time</Tag>
+                          <Tag>Future of Work › HRIS and Core People Systems</Tag>
+                          <Tag className="cursor-pointer hover:bg-gray-200 transition-colors">+5</Tag>
+                        </div>
+                      )},
+                      { label: 'Tags', content: (
+                        <div className="flex flex-wrap gap-2">
+                          {['Workforce Management', 'HR', 'IT', 'Finance', 'Payroll', 'Global Payroll', 'Spend Management', 'Onboarding'].map(tag => (
+                            <Badge key={tag} className="bg-gray-50 font-normal">{tag}</Badge>
+                          ))}
+                        </div>
+                      )},
+                    ].map((row, idx) => (
+                      <div key={idx} className="flex items-start py-4 pl-6 border-b border-gray-100 last:border-b-0">
+                        <div className="w-40 flex-shrink-0 text-sm text-gray-500 font-medium pt-0.5">{row.label}</div>
+                        <div>{row.content}</div>
+                      </div>
+                    ))}
                   </div>
                 </div>
 
