@@ -2,9 +2,9 @@ import React, { useState } from 'react';
 import {
   Search, List as ListIcon, Database, Users, LineChart, PieChart,
   Layers, Settings, ChevronLeft, ChevronRight, Sparkles, Eye, Plus,
-  UploadCloud, ExternalLink, Linkedin, Twitter, Globe, StickyNote,
+  UploadCloud, ExternalLink, Link, Globe, StickyNote,
   Network, Flag, Activity, Briefcase, Users2, Landmark, Building2,
-  LifeBuoy
+  LifeBuoy, ArrowUpRight
 } from 'lucide-react';
 
 const Badge = ({ children, className = "" }) => (
@@ -50,6 +50,54 @@ const SidebarSection = ({ title, children }) => (
     <h3 className="px-3 text-xs font-semibold text-gray-400 uppercase tracking-wider mb-2">{title}</h3>
     <div className="space-y-0.5">
       {children}
+    </div>
+  </div>
+);
+
+const Card = ({ title, children, className = "" }) => (
+  <div className={`bg-white border border-gray-200 rounded-lg overflow-hidden ${className}`}>
+    {title && (
+      <div className="px-5 py-4 border-b border-gray-200 bg-gray-50/50">
+        <h3 className="text-sm font-semibold text-gray-900">{title}</h3>
+      </div>
+    )}
+    <div className="p-5">
+      {children}
+    </div>
+  </div>
+);
+
+const AwardTag = ({ children, isCnbc }) => (
+  <a href="#" className="inline-flex items-center px-3 py-1.5 rounded-md text-xs font-medium bg-white border border-gray-200 text-gray-700 hover:bg-gray-50 transition-colors shadow-sm">
+    {!isCnbc ? (
+      <div className="w-4 h-4 rounded-full flex items-center justify-center mr-2 bg-[#FF492C] text-white">
+        <span className="text-[10px] font-bold">G</span>
+      </div>
+    ) : (
+      <span className="text-[12px] mr-2">🦚</span>
+    )}
+    {children}
+    <ArrowUpRight size={12} className="ml-1.5 text-gray-400" />
+  </a>
+);
+
+const MedalCard = ({ season, year, title, subtitle, isLeader }) => (
+  <div className="w-24 h-28 bg-white border border-gray-200 rounded-lg flex flex-col relative overflow-hidden group hover:border-gray-300 transition-colors cursor-pointer">
+    <div className="flex justify-between items-center px-2 py-1.5 border-b border-gray-100">
+      <span className="text-[7px] font-bold text-gray-800 uppercase tracking-wider">{season} {year}</span>
+      <div className="w-3.5 h-3.5 bg-[#FF492C] rounded-sm flex items-center justify-center text-white text-[8px] font-bold">G</div>
+    </div>
+    <div className="flex-1 flex flex-col items-center justify-center p-2 relative z-10 bg-white">
+      {subtitle && <span className="text-[7px] font-bold text-gray-800 uppercase mb-0.5 text-center leading-tight">{subtitle}</span>}
+      <span className={`font-bold text-gray-900 text-center leading-tight ${subtitle ? 'text-xl' : 'text-sm'}`}>{title}</span>
+      {subtitle && <span className="text-[5px] font-bold text-gray-500 uppercase mt-0.5 tracking-wider">Global Sellers</span>}
+    </div>
+    <div className="absolute bottom-0 left-0 w-full">
+       <svg viewBox="0 0 100 24" preserveAspectRatio="none" className="w-full h-6 drop-shadow-sm">
+         <polygon points="0,0 50,24 100,0 100,24 0,24" fill="#FF492C" />
+         <polygon points="2,0 50,21 98,0 98,24 2,24" fill="#F4D03F" />
+         <polygon points="4,0 50,18 96,0 96,24 4,24" fill="#FFFFFF" />
+       </svg>
     </div>
   </div>
 );
@@ -131,6 +179,8 @@ const App = () => {
 
       {/* Main Content Area */}
       <main className="flex-1 flex flex-col min-w-0 overflow-hidden bg-white">
+
+        {/* Top Header / Breadcrumbs */}
         <div className="h-12 border-b border-gray-100 flex items-center px-6 justify-between text-sm text-gray-500 bg-white">
           <div className="flex items-center space-x-4">
             <div className="flex items-center space-x-2">
@@ -144,6 +194,8 @@ const App = () => {
         <div className="flex-1 overflow-y-auto bg-gray-50">
           <div className="bg-white">
             <div className="max-w-6xl mx-auto w-full">
+
+              {/* Company Profile Header */}
               <div className="px-8 pt-8 pb-6">
                 <div className="flex flex-col md:flex-row md:items-start justify-between gap-6">
                   <div className="flex gap-5">
@@ -172,8 +224,8 @@ const App = () => {
                       <div className="flex items-center gap-3">
                         <div className="flex gap-2">
                           <a href="#" className="p-1.5 text-gray-400 hover:text-gray-600 bg-white rounded border border-gray-200"><Globe size={14} /></a>
-                          <a href="#" className="p-1.5 text-gray-400 hover:text-blue-600 bg-white rounded border border-gray-200"><Linkedin size={14} /></a>
-                          <a href="#" className="p-1.5 text-gray-400 hover:text-gray-900 bg-white rounded border border-gray-200"><Twitter size={14} /></a>
+                          <a href="#" className="p-1.5 text-gray-400 hover:text-blue-600 bg-white rounded border border-gray-200"><Link size={14} /></a>
+                          <a href="#" className="p-1.5 text-gray-400 hover:text-gray-900 bg-white rounded border border-gray-200"><ExternalLink size={14} /></a>
                         </div>
                         <span className="text-xs text-gray-400">No connections</span>
                       </div>
@@ -188,6 +240,7 @@ const App = () => {
                 </div>
               </div>
 
+              {/* Tabs */}
               <div className="px-8 border-b border-gray-200">
                 <nav className="flex space-x-6 overflow-x-auto scrollbar-hide">
                   {tabs.map((tab) => (
@@ -212,6 +265,7 @@ const App = () => {
           </div>
 
           <div className="max-w-6xl mx-auto w-full">
+            {/* Sector Content */}
             <div className="p-8 max-w-5xl">
               <div className="bg-white border border-gray-200 rounded-lg shadow-sm p-6">
                 <div>
@@ -292,6 +346,7 @@ const App = () => {
 
                 <hr className="border-gray-200 my-8" />
 
+                {/* Customer Landscape */}
                 <div>
                   <h3 className="text-sm font-semibold text-gray-900 mb-5">Customer Landscape</h3>
                   <div className="space-y-5">
@@ -317,6 +372,7 @@ const App = () => {
 
                 <hr className="border-gray-200 my-8" />
 
+                {/* Product and Services */}
                 <div>
                   <h3 className="text-sm font-semibold text-gray-900 mb-5">Product and Services</h3>
                   <div className="space-y-6">
@@ -366,8 +422,57 @@ const App = () => {
                     </div>
                   </div>
                 </div>
+
+                <hr className="border-gray-200 my-8" />
+
+                {/* Awards and Certifications Integrated */}
+                <div>
+                  <div className="space-y-6">
+                    <div>
+                      <div className="flex items-center gap-4 mb-4">
+                        <span className="text-sm font-medium text-gray-900">Awards (14)</span>
+                        <div className="flex gap-1">
+                          <button className="px-3 py-1 text-xs font-medium bg-white text-gray-900 rounded-md border border-gray-200 shadow-sm">2026</button>
+                          <button className="px-3 py-1 text-xs font-medium text-gray-500 hover:text-gray-900 rounded-md transition-colors">2025</button>
+                          <button className="px-3 py-1 text-xs font-medium text-gray-500 hover:text-gray-900 rounded-md transition-colors">2024</button>
+                          <button className="px-3 py-1 text-xs font-medium text-gray-500 hover:text-gray-900 rounded-md transition-colors">2023</button>
+                        </div>
+                      </div>
+                      <div className="flex flex-wrap gap-2">
+                        <AwardTag>G2 Best Software Products</AwardTag>
+                        <AwardTag>G2 Fastest Growing Products</AwardTag>
+                        <AwardTag>G2 Highest Satisfaction Products</AwardTag>
+                        <AwardTag isCnbc={true}>CNBC Disruptor 50</AwardTag>
+                      </div>
+                    </div>
+
+                    <div>
+                      <div className="flex items-center gap-3 mb-4 mt-8">
+                         <span className="text-sm font-medium text-gray-900">Medals (2)</span>
+                         <Badge className="bg-white border-gray-200 shadow-sm text-gray-600 px-3 py-1">Rank 6</Badge>
+                      </div>
+                      <div className="flex flex-wrap gap-3">
+                        <MedalCard season="Winter" year="2026" title="Leader" isLeader={true} />
+                        <MedalCard season="2025" subtitle="Best Software" title="Top 100" />
+                      </div>
+                    </div>
+
+                    <div>
+                      <div className="mb-3 mt-8">
+                        <span className="text-sm font-medium text-gray-900">Certifications (3)</span>
+                      </div>
+                      <div className="flex flex-wrap gap-2">
+                        <Tag className="bg-white border border-gray-200 px-3 py-1.5 shadow-sm text-gray-600">SOC 2</Tag>
+                        <Tag className="bg-white border border-gray-200 px-3 py-1.5 shadow-sm text-gray-600">GDPR</Tag>
+                        <Tag className="bg-white border border-gray-200 px-3 py-1.5 shadow-sm text-gray-600">HIPAA</Tag>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
               </div>
 
+              {/* Bottom Spacing */}
               <div className="h-12"></div>
             </div>
           </div>
@@ -396,6 +501,7 @@ const App = () => {
           </button>
         </div>
       </aside>
+
     </div>
   );
 };
