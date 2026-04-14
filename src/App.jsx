@@ -305,6 +305,11 @@ const App = () => {
                     </div>
 
                     <div>
+                      <h4 className="text-xs font-medium text-gray-500 mb-2">Employee Count</h4>
+                      <span className="text-sm text-gray-800">1,449</span>
+                    </div>
+
+                    <div>
                       <h4 className="text-xs font-medium text-gray-500 mb-2">Business Model</h4>
                       <Tag>SaaS</Tag>
                     </div>
